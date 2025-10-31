@@ -206,8 +206,8 @@ Expands to: Constant karate_coq.My00.add</blockquote></div></div></small><span c
 <h2>1.4 Курс Антона</h2>
 <div class="admonition admonition-">
 <p class="first admonition-title">Требования к подготовке.</p>
-<p class="last">Чтобы было по-кайфу желательно <span class="strike">как минимум не ссаться под себя и</span> знать 2 вещи:
-основы логики и основы ФП.</p>
+<p class="last">Чтобы было по-кайфу желательно знакомство с основами логики и основами
+ФП.</p>
 </div>
 <p>Антон рекомендует читать эти 2 книги по ходу дела:</p>
 <ul class="simple">
@@ -1834,14 +1834,52 @@ f(x_2) \Rightarrow x_1 = x_2\)</span>. Хм, опробуем понять чт�
 <p><em>Подсказка</em>: Возможно, стоит ввести рекурсивный вспомогательный метод
 <code class="highlight coq"><span class="n">decompile'</span></code> для переиспользования в <code class="highlight coq"><span class="n">decompile</span></code>.</p>
 <p>Тут задача сводится к преобразованию списка инструкций в дерево выражений.</p>
-<pre class="alectryon-io highlight"><!-- Generator: Alectryon --><span class="alectryon-wsp">  <span class="c">(* Definition decompile (p : prog) : option expr := *)</span>
-  <span class="c">(*   match p with *)</span>
-  <span class="c">(*   | Push x :: p&#39; =&gt; Const x *)</span>
-  <span class="c">(*   | Push x :: Push y :: p&#39; =&gt; Plus *)</span>
-  <span class="c">(*   end. *)</span>
-
-  <span class="c">(* Compute decompile [:: &lt;^2^&gt;; &lt;^3^&gt;]. *)</span>
-
+<pre class="alectryon-io highlight"><!-- Generator: Alectryon --><span class="alectryon-wsp">  </span><span class="alectryon-sentence"><span class="alectryon-input"><span class="kn">Fixpoint</span> <span class="nf">decompile&#39;</span> (<span class="nv">p</span> : prog) (<span class="nv">s</span> : seq expr) : option (seq expr) :=
+    <span class="kr">match</span> p <span class="kr">with</span>
+    | [::] =&gt; Some s
+    | i :: p&#39; =&gt;
+      <span class="kr">match</span> i <span class="kr">with</span>
+      | Push x =&gt; decompile&#39; p&#39; (Const x :: s)
+      | <span class="kn">Add</span> =&gt;
+        <span class="kr">match</span> s <span class="kr">with</span>
+        | e2 :: e1 :: es =&gt; decompile&#39; p&#39; (Plus e1 e2 :: es)
+        | _ =&gt; None
+        <span class="kr">end</span>
+      | Sub =&gt;
+        <span class="kr">match</span> s <span class="kr">with</span>
+        | e2 :: e1 :: es =&gt; decompile&#39; p&#39; (Minus e1 e2 :: es)
+        | _ =&gt; None
+        <span class="kr">end</span>
+      | Mul =&gt;
+        <span class="kr">match</span> s <span class="kr">with</span>
+        | e2 :: e1 :: es =&gt; decompile&#39; p&#39; (Mult e1 e2 :: es)
+        | _ =&gt; None
+        <span class="kr">end</span>
+      <span class="kr">end</span>
+    <span class="kr">end</span>.</span><span class="alectryon-wsp">
+</span></span><span class="alectryon-wsp">
+</span><span class="alectryon-wsp">  </span><span class="alectryon-sentence"><input class="alectryon-toggle" id="karate-coq-v-chkd2" style="display: none" type="checkbox"><label class="alectryon-input" for="karate-coq-v-chkd2"><span class="kn">Compute</span> decompile&#39; [:: &lt;^<span class="mi">5</span>^&gt;; &lt;^<span class="mi">4</span>^&gt;; &lt;^+^&gt;; &lt;^<span class="mi">2</span>^&gt;; &lt;^*^&gt;].</label><small class="alectryon-output"><div><div class="alectryon-messages"><blockquote class="alectryon-message">= <span class="kr">fun</span> <span class="nv">s</span> : seq expr =&gt;
+  Some ([[((<span class="mi">5</span> + <span class="mi">4</span>) * <span class="mi">2</span>)]] :: s)
+: seq expr -&gt; option (seq expr)</blockquote></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-wsp">
+</span><span class="alectryon-wsp">  </span><span class="alectryon-sentence"><span class="alectryon-input"><span class="kn">Definition</span> <span class="nf">decompile</span> (<span class="nv">p</span> : prog) : option expr :=
+    <span class="kr">match</span> decompile&#39; p [::] <span class="kr">with</span>
+    | Some [:: e] =&gt; Some e
+    | _ =&gt; None
+    <span class="kr">end</span>.</span><span class="alectryon-wsp">
+</span></span><span class="alectryon-wsp">
+</span><span class="alectryon-wsp">  </span><span class="alectryon-sentence"><input class="alectryon-toggle" id="karate-coq-v-chkd3" style="display: none" type="checkbox"><label class="alectryon-input" for="karate-coq-v-chkd3"><span class="kn">Check</span> erefl :
+    decompile [:: &lt;^<span class="mi">5</span>^&gt;; &lt;^<span class="mi">4</span>^&gt;; &lt;^+^&gt;; &lt;^<span class="mi">2</span>^&gt;; &lt;^*^&gt;; &lt;^<span class="mi">1</span>^&gt;; &lt;^-^&gt;] =
+      Some [[ (<span class="mi">5</span> + <span class="mi">4</span>) * <span class="mi">2</span> - <span class="mi">1</span> ]].</label><small class="alectryon-output"><div><div class="alectryon-messages"><blockquote class="alectryon-message">erefl
+:
+decompile
+  [:: &lt;^ <span class="mi">5</span> ^&gt;; &lt;^ <span class="mi">4</span> ^&gt;; &lt;^+^&gt;; &lt;^ <span class="mi">2</span> ^&gt;; &lt;^*^&gt;;
+      &lt;^ <span class="mi">1</span> ^&gt;; &lt;^-^&gt;] = Some [[((<span class="mi">5</span> + <span class="mi">4</span>) * <span class="mi">2</span> - <span class="mi">1</span>)]]
+     : decompile
+         [:: &lt;^ <span class="mi">5</span> ^&gt;; &lt;^ <span class="mi">4</span> ^&gt;; &lt;^+^&gt;; &lt;^ <span class="mi">2</span> ^&gt;; &lt;^*^&gt;;
+             &lt;^ <span class="mi">1</span> ^&gt;; &lt;^-^&gt;] =
+       Some [[((<span class="mi">5</span> + <span class="mi">4</span>) * <span class="mi">2</span> - <span class="mi">1</span>)]]</blockquote></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-wsp">
 </span><span class="alectryon-sentence"><span class="alectryon-input"><span class="kn">End</span> <span class="nf">My06</span>.</span></span></pre></div>
 </div>
 <div class="section" id="section-26">

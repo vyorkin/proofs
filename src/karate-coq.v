@@ -238,8 +238,8 @@ End My00.
 
 (*| .. admonition:: Требования к подготовке.
 
-       Чтобы было по-кайфу желательно :strike:`как минимум не ссаться под себя и` знать 2 вещи:
-       основы логики и основы ФП. |*)
+       Чтобы было по-кайфу желательно знакомство с основами логики и основами
+       ФП. |*)
 
 (*|
 Антон рекомендует читать эти 2 книги по ходу дела:
@@ -1960,13 +1960,42 @@ f(x_2) \Rightarrow x_1 = x_2`. Хм, опробуем понять что это
 (*| Тут задача сводится к преобразованию списка инструкций в дерево выражений.
 |*)
 
-  (* Definition decompile (p : prog) : option expr := *)
-  (*   match p with *)
-  (*   | Push x :: p' => Const x *)
-  (*   | Push x :: Push y :: p' => Plus *)
-  (*   end. *)
 
-  (* Compute decompile [:: <^2^>; <^3^>]. *)
+  Fixpoint decompile' (p : prog) (s : seq expr) : option (seq expr) :=
+    match p with
+    | [::] => Some s
+    | i :: p' =>
+      match i with
+      | Push x => decompile' p' (Const x :: s)
+      | Add =>
+        match s with
+        | e2 :: e1 :: es => decompile' p' (Plus e1 e2 :: es)
+        | _ => None
+        end
+      | Sub =>
+        match s with
+        | e2 :: e1 :: es => decompile' p' (Minus e1 e2 :: es)
+        | _ => None
+        end
+      | Mul =>
+        match s with
+        | e2 :: e1 :: es => decompile' p' (Mult e1 e2 :: es)
+        | _ => None
+        end
+      end
+    end.
+
+  Compute decompile' [:: <^5^>; <^4^>; <^+^>; <^2^>; <^*^>].
+
+  Definition decompile (p : prog) : option expr :=
+    match decompile' p [::] with
+    | Some [:: e] => Some e
+    | _ => None
+    end.
+
+  Check erefl :
+    decompile [:: <^5^>; <^4^>; <^+^>; <^2^>; <^*^>; <^1^>; <^-^>] =
+      Some [[ (5 + 4) * 2 - 1 ]].
 
 End My06.
 
