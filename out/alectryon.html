@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="alectryon-standalone" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.22.2: https://docutils.sourceforge.io/" />
+<title>alectryon.v</title>
+<script type="text/javascript" defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.min.js?config=TeX-AMS_CHTML"></script>
+<link rel="stylesheet" href="alectryon.css" type="text/css" />
+<link rel="stylesheet" href="docutils_basic.css" type="text/css" />
+<link rel="stylesheet" href="pygments.css" type="text/css" />
+<script type="text/javascript" src="alectryon.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/IBM-type/0.5.4/css/ibm-type.min.css" integrity="sha512-sky5cf9Ts6FY1kstGOBHSybfKqdHR41M0Ldb0BjNiv3ifltoQIsg0zIaQ+wwdwgQ0w9vKFW7Js50lxH9vqNSSw==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/firacode/5.2.0/fira_code.min.css" integrity="sha512-MbysAYimH1hH2xYzkkMHB6MqxBqfP0megxsCLknbYqHVwXTCg9IqHbk+ZP/vnhO8UEW6PaXAkKe2vQ+SWACxxA==" crossorigin="anonymous" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="alectryon-root alectryon-centered"><div class="alectryon-banner">Built with <a href="https://github.com/cpitclaudel/alectryon/">Alectryon</a>, running Coq+SerAPI v8.20.0+0.20.0. Bubbles (<span class="alectryon-bubble"></span>) indicate interactive fragments: hover for details, tap to reveal contents. Use <kbd>Ctrl+↑</kbd> <kbd>Ctrl+↓</kbd> to navigate, <kbd>Ctrl+🖱️</kbd> to focus. On Mac, use <kbd>⌘</kbd> instead of <kbd>Ctrl</kbd>.</div><div class="document">
+
+
+<div class="section" id="alectryon">
+<h1>Играемся с alectryon.</h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Автор:</th><td class="field-body">Вася</td>
+</tr>
+<tr class="field"><th class="field-name">Дата:</th><td class="field-body">27 октября 2025 г.</td>
+</tr>
+<tr class="field"><th class="field-name">Погода:</th><td class="field-body">Дождливая, хуёвая</td>
+</tr>
+</tbody>
+</table>
+<p>Изучим эту штуковину, потыкаем флажки.
+Используем пример с доказательством двойного отрицания как <em>подопытного кролика</em>.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Сразу замечу. 
+Whatever</p>
+<p class="last">Что работают тут далеко не все <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html">директивы</a>.</p>
+</div>
+<p>Но ссылки пиздец удобные.</p>
+<pre class="alectryon-io highlight"><!-- Generator: Alectryon --><span class="alectryon-wsp">
+</span><span class="alectryon-wsp">  </span><span class="alectryon-sentence"><span class="alectryon-input"><span class="kn">Context</span> (<span class="nv">excl</span>: <span class="kr">forall</span> <span class="nv">A</span>, A \/ ~ A ).</span><span class="alectryon-wsp">
+</span></span><span class="alectryon-wsp">  </span><span class="alectryon-sentence"><input class="alectryon-toggle" id="alectryon-v-chk0" style="display: none" type="checkbox"><label class="alectryon-input" for="alectryon-v-chk0"><span class="kn">Goal</span> <span class="kr">forall</span> <span class="nv">A</span>, (~ ~ A -&gt; A).</label><small class="alectryon-output"><div><div class="alectryon-goals"><blockquote class="alectryon-goal"><div class="goal-hyps"><span><var>excl</var><span class="hyp-type"><b>: </b><span><span class="kr">forall</span> <span class="nv">A</span> : <span class="kt">Prop</span>, A \/ ~ A</span></span></span><br></div><span class="goal-separator"><hr></span><div class="goal-conclusion"><span class="kr">forall</span> <span class="nv">A</span> : <span class="kt">Prop</span>, ~ ~ A -&gt; A</div></blockquote></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-wsp">    </span><span class="alectryon-sentence"><input class="alectryon-toggle" id="alectryon-v-chk1" style="display: none" type="checkbox"><label class="alectryon-input" for="alectryon-v-chk1"><span class="nb">intros</span> A notnot_A.</label><small class="alectryon-output"><div><div class="alectryon-goals"><blockquote class="alectryon-goal"><div class="goal-hyps"><span><var>excl</var><span class="hyp-type"><b>: </b><span><span class="kr">forall</span> <span class="nv">A</span> : <span class="kt">Prop</span>, A \/ ~ A</span></span></span><br><span><var>A</var><span class="hyp-type"><b>: </b><span><span class="kt">Prop</span></span></span></span><br><span><var>notnot_A</var><span class="hyp-type"><b>: </b><span>~ ~ A</span></span></span><br></div><span class="goal-separator"><hr></span><div class="goal-conclusion">A</div></blockquote></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-sentence"><input checked="checked" class="alectryon-toggle" id="alectryon-v-chk2" style="display: none" type="checkbox"><small class="alectryon-output"><div><div class="alectryon-messages"><blockquote class="alectryon-message">(<span class="kr">fun</span> (<span class="nv">A</span> : <span class="kt">Prop</span>) (<span class="nv">notnot_A</span> : ~ ~ A) =&gt; <span class="nl">?Goal</span>)</blockquote></div></div></small></span><span class="alectryon-wsp">    </span><span class="alectryon-sentence"><input class="alectryon-toggle" id="alectryon-v-chk3" style="display: none" type="checkbox"><label class="alectryon-input" for="alectryon-v-chk3"><span class="nb">destruct</span> (excl A) <span class="kr">as</span> [a | na].</label><small class="alectryon-output"><div><div class="alectryon-goals"><blockquote class="alectryon-goal"><div class="goal-hyps"><span><var>excl</var><span class="hyp-type"><b>: </b><span><span class="kr">forall</span> <span class="nv">A</span> : <span class="kt">Prop</span>, A \/ ~ A</span></span></span><br><span><var>A</var><span class="hyp-type"><b>: </b><span><span class="kt">Prop</span></span></span></span><br><span><var>notnot_A</var><span class="hyp-type"><b>: </b><span>~ ~ A</span></span></span><br><span><var>a</var><span class="hyp-type"><b>: </b><span>A</span></span></span><br></div><span class="goal-separator"><hr></span><div class="goal-conclusion">A</div></blockquote><div class="alectryon-extra-goals"><input class="alectryon-extra-goal-toggle" id="alectryon-v-chk4" style="display: none" type="checkbox"><blockquote class="alectryon-goal"><div class="goal-hyps"><span><var>excl</var><span class="hyp-type"><b>: </b><span><span class="kr">forall</span> <span class="nv">A</span> : <span class="kt">Prop</span>, A \/ ~ A</span></span></span><br><span><var>A</var><span class="hyp-type"><b>: </b><span><span class="kt">Prop</span></span></span></span><br><span><var>notnot_A</var><span class="hyp-type"><b>: </b><span>~ ~ A</span></span></span><br><span><var>na</var><span class="hyp-type"><b>: </b><span>~ A</span></span></span><br></div><label class="goal-separator" for="alectryon-v-chk4"><hr></label><div class="goal-conclusion">A</div></blockquote></div></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-wsp">    </span><span class="alectryon-sentence"><input class="alectryon-toggle" id="alectryon-v-chk5" style="display: none" type="checkbox"><label class="alectryon-input" for="alectryon-v-chk5">-</label><small class="alectryon-output"><div><div class="alectryon-goals"><blockquote class="alectryon-goal"><div class="goal-hyps"><span><var>excl</var><span class="hyp-type"><b>: </b><span><span class="kr">forall</span> <span class="nv">A</span> : <span class="kt">Prop</span>, A \/ ~ A</span></span></span><br><span><var>A</var><span class="hyp-type"><b>: </b><span><span class="kt">Prop</span></span></span></span><br><span><var>notnot_A</var><span class="hyp-type"><b>: </b><span>~ ~ A</span></span></span><br><span><var>a</var><span class="hyp-type"><b>: </b><span>A</span></span></span><br></div><span class="goal-separator"><hr></span><div class="goal-conclusion">A</div></blockquote></div></div></small><span class="alectryon-wsp"> </span></span><span class="alectryon-sentence"><span class="alectryon-input"><span class="bp">assumption</span>.</span><span class="alectryon-wsp">
+</span></span><span class="alectryon-sentence"><input checked="checked" class="alectryon-toggle" id="alectryon-v-chk6" style="display: none" type="checkbox"><small class="alectryon-output"><div><div class="alectryon-messages"><blockquote class="alectryon-message">(<span class="kr">fun</span> (<span class="nv">A</span> : <span class="kt">Prop</span>) (<span class="nv">notnot_A</span> : ~ ~ A) =&gt;
+ <span class="kr">let</span> <span class="nv">o</span> : A \/ ~ A := excl A <span class="kr">in</span>
+ <span class="kr">match</span> o <span class="kr">with</span>
+ | or_introl x =&gt; (<span class="kr">fun</span> <span class="nv">a</span> : A =&gt; a) x
+ | or_intror x =&gt; (<span class="kr">fun</span> <span class="nv">na</span> : ~ A =&gt; <span class="nl">?Goal</span>) x
+ <span class="kr">end</span>)</blockquote></div></div></small></span><span class="alectryon-wsp">  </span><span class="alectryon-sentence"><span class="alectryon-input"><span class="kn">Abort</span>.</span><span class="alectryon-wsp">
+</span></span><span class="alectryon-wsp">
+</span></pre><p>Поиграемся со следующими примерами из пейпера alectryon.</p>
+<div class="section" id="booleans">
+<h2>Booleans</h2>
+<p>The built-in <a class="reference external" href="https://coq.inria.fr/library/Coq.Init.Datatypes.html#bool">Boolean</a>
+type has two constructors:</p>
+<pre class="alectryon-io highlight"><!-- Generator: Alectryon --><span class="alectryon-sentence"><input checked="checked" class="alectryon-toggle" id="alectryon-v-chk7" style="display: none" type="checkbox"><small class="alectryon-output"><div><div class="alectryon-messages"><blockquote class="alectryon-message"><span class="kn">Inductive</span> <span class="nf">bool</span> : <span class="kt">Set</span> :=  true : bool | false : bool.</blockquote></div></div></small></span></pre><div class="topic">
+<p class="topic-title">Induction principles
+Coq automatically defines an induction principle:</p>
+<pre class="alectryon-io highlight"><!-- Generator: Alectryon --><span class="alectryon-sentence"><input checked="checked" class="alectryon-toggle" id="alectryon-v-chk8" style="display: none" type="checkbox"><label class="alectryon-input" for="alectryon-v-chk8"><span class="kn">Search</span> (<span class="kr">forall</span> <span class="nv">b</span>: bool, _ b) <span class="s2">&quot;_ind&quot;</span>.</label><small class="alectryon-output"><div><div class="alectryon-messages"><blockquote class="alectryon-message">bool_ind:
+  <span class="kr">forall</span> <span class="nv">P</span> : bool -&gt; <span class="kt">Prop</span>,
+  P true -&gt; P false -&gt; <span class="kr">forall</span> <span class="nv">b</span> : bool, P b</blockquote></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-wsp">
+</span></pre></div>
+</div>
+</div>
+<div class="section" id="writing-decision-procedures">
+<h1>Writing decision procedures</h1>
+<p>Here's an inductive type:</p>
+<pre class="alectryon-io highlight"><!-- Generator: Alectryon --><span class="alectryon-sentence"><span class="alectryon-input"><span class="kn">Inductive</span> <span class="nf">Even</span> : nat -&gt; <span class="kt">Prop</span> :=
+| EvenO : Even O
+| EvenS : <span class="kr">forall</span> <span class="nv">n</span>, Even n -&gt; Even (S (S n)).</span></span></pre><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>А это какая-то заметка.</p>
+<p>Например, про то, что у нашего идуктивного типа есть 2 конструктора:</p>
+<div class="last"><pre class="alectryon-io highlight"><!-- Generator: Alectryon --><span class="alectryon-sentence"><input class="alectryon-toggle" id="alectryon-v-chk9" style="display: none" type="checkbox"><label class="alectryon-input" for="alectryon-v-chk9"><span class="kn">Check</span> EvenO.</label><small class="alectryon-output"><div><div class="alectryon-messages"><blockquote class="alectryon-message">EvenO
+     : Even <span class="mi">0</span></blockquote></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-sentence"><input class="alectryon-toggle" id="alectryon-v-chka" style="display: none" type="checkbox"><label class="alectryon-input" for="alectryon-v-chka"><span class="kn">Check</span> EvenS.</label><small class="alectryon-output"><div><div class="alectryon-messages"><blockquote class="alectryon-message">EvenS
+     : <span class="kr">forall</span> <span class="nv">n</span> : nat, Even n -&gt; Even (S (S n))</blockquote></div></div></small></span></pre></div></div>
+<p>Тут можно просто формулы какие-то ебашить.</p>
+<p>Вот так, например:</p>
+<div class="math">
+\begin{equation*}
+(a + b)^2 = a^2 + 2ab + b^2
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+(a - b)^2 = a^2 - 2ab + b^2
+\end{equation*}
+</div>
+<p>Или вот так, чтобы были выровненные по знаку <code class="highlight coq"><span class="o">&amp;</span></code>, а разделены <code class="highlight coq"><span class="o">\\</span></code>:</p>
+<div class="math">
+\begin{align*}
+(a + b)^2  &amp;=  (a + b)(a + b) \\
+           &amp;=  a^2 + 2ab + b^2
+\end{align*}
+</div>
+<div class="math">
+\begin{align*}
+a &amp;= (x + y)^2         &amp;  b &amp;= (x - y)^2 \\
+  &amp;= x^2 + 2xy + y^2   &amp;    &amp;= x^2 - 2xy + y^2
+\end{align*}
+</div>
+<p>Если надо просто в одну строку, то нет проблем: <span class="math">\((a + b)^2 = a^2 + 2ab + b^2\)</span>.</p>
+<p>Ещё примерчик со слегка ёбнутым выравниванием:</p>
+<div class="math">
+\begin{align*}
+y    &amp; = &amp; ax^2 + bx + c \\
+f(x) &amp; = &amp; x^2 + 2xy + y^2
+\end{align*}
+</div>
+<p>А ещё можно форматировать в Latex по-умолчанию.</p>
+<p>Для этого нужно написать если написать <code class="highlight coq"><span class="o">..</span> <span class="n">default</span><span class="o">-</span><span class="n">role</span><span class="o">::</span> <span class="n">math</span></code> и
+всё что после этого можно писать просто внутри апострофов, без префикса <code class="highlight coq"><span class="o">:</span><span class="n">math</span><span class="o">:</span></code>.</p>
+<p>Ну короче, вот, например, так:</p>
+<p><span class="math">\(\psi(r) = \exp(-2r)\)</span></p>
+<p>И нихуя себе - это работает.</p>
+<p>А ещё можно давать имена, и потом на них ссылаться.</p>
+<div class="math" id="fourier-transform">
+\begin{equation*}
+(\mathcal{F}f)(y)
+ = \frac{1}{\sqrt{2\pi}^{\ n}}
+   \int_{\mathbb{R}^n} f(x)\,
+   e^{-\mathrm{i} y \cdot x} \,\mathrm{d} x.
+\end{equation*}
+</div>
+<div class="math">
+\begin{equation*}
+\left.
+  \begin{aligned}
+    B' &amp; = -\partial\times E,         \\
+    E' &amp; = \partial\times B - 4\pi j,
+  \end{aligned}
+\right\}
+\qquad \text{Maxwell’s equations}
+\end{equation*}
+</div>
+<p>Вот это угарно: <span class="math">\(\mathfrak{a+b}\)</span>. Типа готические символы.</p>
+<p>А для всяких приколов типа числовых множеств, можно вот так делать: <span class="math">\(\mathbb{R \subset C}\)</span>.</p>
+<p>Корни:</p>
+<p><span class="math">\(\sqrt{x^2-1}\)</span></p>
+<p>В пиздатой рамочке:</p>
+<p><span class="math">\(\boxed{\sqrt{x^2-1}}\)</span></p>
+<p>Охуеть!</p>
+<p><span class="math">\(2^k-\binom{k}{1}2^{k-1}+\binom{k}{2}2^{k-2}\)</span></p>
+<p>Вообще, <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/mathematics.html">вот тут</a> много чего есть полезного. Будем сюда подсматривать.</p>
+<div class="topic">
+<p class="topic-title">Exercise: Тут какое-то название упражнения или задачи.</p>
+<p>А тут как-то описание задачи/упражнения.</p>
+<p>Например, зацени какие пиздатые матрицы:</p>
+<div class="math">
+\begin{equation*}
+\left ( \begin{matrix} a &amp; b \\ c &amp; d \end{matrix}\right)
+\end{equation*}
+</div>
+</div>
+<div class="admonition admonition-">
+<p class="first admonition-title">Заголовок.</p>
+<p class="last">Тут что-то написано.</p>
+</div>
+<p>Какой-то ещё один параграф.</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention!</p>
+<p>Внимание тут требуется.</p>
+<p class="last">А вот тут можно посмотреть какие ещё бывают <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html">директивы</a>.  
+Заметь, что это ссылка на внешний ресурс.</p>
+</div>
+<div class="section" id="section-1">
+<h2>Это заголовок</h2>
+<div class="section" id="section-2">
+<h3>А это подзаголовок</h3>
+<p>А это просто текст какой-то. Параграф обычный.</p>
+<p>Сейчас будет список:</p>
+<ul class="simple">
+<li>Первый</li>
+<li>Второй</li>
+<li>Третий</li>
+</ul>
+<p>А теперь будет пронумерованный список:</p>
+<ol class="arabic simple">
+<li>Раз</li>
+<li>Два</li>
+<li>Три</li>
+</ol>
+</div>
+<div class="section" id="section-3">
+<h3>Определения</h3>
+<dl class="docutils">
+<dt>Собака</dt>
+<dd>Друг человека.
+Собака бывает <strong>кусачей</strong> только от <strong>жизни собачей</strong>.</dd>
+</dl>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<dl class="last docutils">
+<dt>Python's <span class="math">\(zipfile\)</span> module</dt>
+<dd>Documentation of Python's standard <span class="math">\(zipfile\)</span> module.</dd>
+<dt><a class="reference external" href="https://example.org">GNU tar manual, Basic Tar Format</a></dt>
+<dd>Documentation for tar archive files, including GNU tar extensions.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></body>
+</html>

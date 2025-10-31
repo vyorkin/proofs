@@ -1,18 +1,17 @@
 (*|
-=============================================
+=============================
 Доказываем всё, что по кайфу.
-=============================================
+=============================
 
-:Author: Vasiliy Yorkin
-:Date: October 24, 2025
-
+:Автор: Вася 
+:Дата: 24 октября 2025 г.
+:Погода: Облачность, пойдёт
 |*)
 
 
+(*| Попробуем поработать с finset. Хрен его знает с чего начать. |*)
 
-(*| Попробуем поработать с finset.
-Хрен его знает с чего начать. |*)
-From mathcomp Require Import ssreflect ssrbool finset.
+From mathcomp Require Import ssreflect ssrbool fintype finset. (* .none *)
 
 Module Finsets.
 
@@ -23,6 +22,10 @@ Locate orbF.
 (*| Для примера, докажем, что :math:`A \cup \emptyset = A`: 
 
  Здесь:
+
+ * `{set T}` - `finset` из `mathcomp`
+ * `:|:` - объединение множеств (union)
+ * `set0` - пустое множество.
 
  * `setP` - :math:`A = B \iff \forall x, \, (x \in A \leftrightarrow x \in B)`:
  * `in_setU` - :math:`x \in A \cup B \iff x \in A \lor x \in B`: 
