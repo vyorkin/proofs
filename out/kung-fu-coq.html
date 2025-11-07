@@ -190,8 +190,7 @@ add <span class="kr">is</span> not universe polymorphic
 add <span class="kr">is</span> transparent
 Expands to: Constant kung_fu_coq.My00.add</blockquote></div></div></small><span class="alectryon-wsp">
 </span></span><span class="alectryon-wsp">  </span><span class="alectryon-sentence"><input class="alectryon-toggle" id="kung-fu-coq-v-chk2" style="display: none" type="checkbox"><label class="alectryon-input" for="kung-fu-coq-v-chk2"><span class="kn">Check</span> add <span class="mi">2</span>.</label><small class="alectryon-output"><div><div class="alectryon-messages"><blockquote class="alectryon-message">add <span class="mi">2</span>
-     : nat -&gt; nat</blockquote></div></div></small></span></pre><p>Эмм. Ну понятно. Лучше пока переключимся на курс Антона, ибо он пизже как
-&quot;база&quot;.</p>
+     : nat -&gt; nat</blockquote></div></div></small></span></pre><p>Эмм. Ну понятно. Лучше пока переключимся на курс Антона, ибо он пизже как вводный.</p>
 <p>Кстати, <a class="reference external" href="https://anton-trunov.github.io/csclub-coq-course-spring-2021/slides/intro.html">вот слайды</a>,
 которые можно было полистать вместо чтения этого невменяемого текста, но уже поздно.</p>
 <pre class="alectryon-io highlight"><!-- Generator: Alectryon --><span class="alectryon-sentence"><span class="alectryon-input"><span class="kn">End</span> <span class="nf">My00</span>.</span></span></pre></div>
@@ -1176,7 +1175,8 @@ Dependent <span class="kn">Proposition</span> <span class="nf">Eliminators</span
 делаю автоматическое понижение&quot;. Это скоро перестанет делаться автоматически,
 чтоб избежать неявного поведения.</li>
 </ul>
-<p>Из пустоты можно получить всё, но сначала <em>предъяви пустоту</em>.</p>
+<p>Из пустоты (неконструируемого) можно получить всё, но сначала <em>предъяви
+пустоту</em> (неконструироемое).</p>
 <pre class="alectryon-io highlight"><!-- Generator: Alectryon --><span class="alectryon-wsp">  </span><span class="alectryon-sentence"><span class="alectryon-input"><span class="kn">Definition</span> <span class="nf">void_terminal</span> (<span class="nv">A</span> : <span class="kt">Type</span>) :
     void -&gt; A
   :=
@@ -1287,8 +1287,8 @@ environment.</blockquote></div></div></small></span></pre><p>Проблема п
     <span class="kr">forall</span> <span class="nv">A</span> : <span class="kt">Type</span> ,  <span class="kr">forall</span> <span class="nv">x</span> : A ,  A
   :=
       <span class="kr">fun</span> <span class="nv">A</span> : <span class="kt">Type</span> =&gt;    <span class="kr">fun</span> <span class="nv">x</span> : A =&gt; x.</span></span></pre><p>Ну короче, если хочется погрузиться и начать шарить в этой теме, то можно
-почитать <a class="reference external" href="https://inria.hal.science/hal-01094195/document">Introduction to the Calculus of Inductive Constructions</a>, а нам пока хватит и такого
-понимания.</p>
+почитать <a class="reference external" href="https://inria.hal.science/hal-01094195/document">Introduction to the Calculus of Inductive Constructions</a>, а пока нас это ебать не
+должно.</p>
 </div>
 <div class="section" id="section-18">
 <h3>Тип-произведение</h3>
@@ -2229,30 +2229,32 @@ More precisely:
 </div>
 </div>
 <div class="section" id="section-36">
-<h3>Равенство</h3>
+<h3>Равенства</h3>
 <p>Одна из центральных тем теории типов. Там существует целая иерархия понятий
 равенства или эквивалентности.</p>
 </div>
 <div class="section" id="section-37">
 <h3>Равенство по определению</h3>
-<p>Не знаю правильно ли я перевёл, в оригинале это definitional equality
-(дефиниционное равенство?).</p>
-<p>На мета‑уровне существует <em>встроенное</em> понятие равенства между термами. Оно
+<p>Не известно корректный ли термин, но в оригинале это definitional equality.</p>
+<p>На мета-уровне существует <em>встроенное</em> понятие равенства между термами. Оно
 утверждает, что любые два терма равны, если можно свести один к другому
-вычислениями (т.е. конвертируемы). Важно понимать, что нельзя доказать
-такое равенство, тк такие равенства - внутренняя механика кока.</p>
+вычислениями (т.е. если они &quot;конвертируемы&quot;). Такое равенство нельзя доказать,
+такие равенства - внутренняя механика кока. То есть, насколько я понял, кок
+просто запускает вычисление, смотрит на редуцированную пару термов и заключает
+&quot;равны&quot; они или нет.</p>
 </div>
 <div class="section" id="section-38">
 <h3>Пропозициональное равенство</h3>
-<p>Мы можем ввести пропозициональное равенство. Это будет первая встреча с
-<em>индексированными</em> типами.</p>
+<p>Мы можем ввести <strong>равенство по определению</strong> внутрь языка с помощью вот такого идуктивного типа <code class="highlight coq"><span class="n">eq</span></code>:</p>
 <pre class="alectryon-io highlight"><!-- Generator: Alectryon --><span class="alectryon-wsp">  </span><span class="alectryon-sentence"><span class="alectryon-input"><span class="kn">Inductive</span> <span class="nf">eq</span> (<span class="nv">A</span> : <span class="kt">Type</span>) (<span class="nv">x</span> : A) : A -&gt; <span class="kt">Prop</span> :=
-  | eq_refl : eq x x.</span></span></pre><p>Единственное свойство, заложенное в этом равенстве — <em>рефлексивность</em>.</p>
-<p>В этом определении тип <code class="highlight coq"><span class="n">A</span></code> после двоеточия называется <em>индексом</em>. А <code class="highlight coq"><span class="n">x</span></code> —
-<em>параметром</em>. Параметры должны быть одинаковыми для всех конструкторов, а
-индексы могут меняться. В данном случае конструктор один, поэтому вариантов нет.
-Но именно благодаря такому механизму сопоставление с образцом позволяет
-симулировать равенство между термами.</p>
+  | eq_refl : eq x x.</span></span></pre><p>Это и называется <strong>пропозициональное равенство</strong>. Единственное свойство,
+заложенное в этом равенстве — <em>рефлексивность</em>.</p>
+<p>Это первая встреча с <em>индексированными</em> типами и надо бы разобраться.</p>
+<p>В этом определении тип <code class="highlight coq"><span class="n">A</span></code> после двоеточия называется <em>индексом</em>, а <code class="highlight coq"><span class="n">x</span></code> — <em>параметром</em>.
+Параметры должны быть одинаковыми для всех конструкторов, а индексы могут
+меняться. В данном случае конструктор один, поэтому вариантов нет. Но именно
+благодаря такому механизму паттерн-матчинг позволяет симулировать
+равенство между термами.</p>
 <pre class="alectryon-io highlight"><!-- Generator: Alectryon --><span class="alectryon-sentence"><span class="alectryon-input"><span class="kn">End</span> <span class="nf">My07</span>.</span></span></pre><link rel="stylesheet" href="css/karate-coq.css">
 <script type="text/javascript" src="js/karate-coq.js"></script></div>
 </div>
